@@ -1,6 +1,13 @@
 <template>
   <v-container>
     <v-row>
+      <v-col cols="12">
+        <router-link class="nav-link nav-link--light" :to="{ name: 'modals' }">
+          Go to Modals
+        </router-link>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="3">
         <v-btn small color="primary" @click="start">Запуск</v-btn>
       </v-col>

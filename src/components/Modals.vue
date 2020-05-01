@@ -2,6 +2,13 @@
   <v-container @mousemove.stop="onmousemove" @mouseup="up">
     <v-row>
       <v-col cols="12">
+        <router-link class="nav-link nav-link--light" :to="{ name: 'bitcoin' }">
+          Go to Bitcoins
+        </router-link>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
         <div
           v-for="(item, index) in boxes"
           :key="index"
