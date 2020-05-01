@@ -13,7 +13,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <h3>Сумма:</h3>
+        <h3>Сумма: {{ total }} BTC</h3>
       </v-col>
     </v-row>
     <v-row>
@@ -44,6 +44,7 @@
             </tbody>
           </template>
         </v-simple-table>
+        <div>{{ error }}</div>
       </v-col>
     </v-row>
   </v-container>
@@ -54,14 +55,19 @@ export default {
   name: "Bitcoin",
   data: function() {
     return {
+      error: "",
       transactions: [],
       socket: new WebSocket("wss://ws.blockchain.info/inv")
     };
   },
+  computed: {
+    total: function() {
+      return this.transactions.reduce((acc, val) => (acc += val.sum), 0);
+    }
+  },
   mounted() {
     this.socket.onmessage = event => {
       const data = JSON.parse(event.data)["x"];
-      console.log(data);
       const from = [];
       const to = [];
       let satoshi = 0;
@@ -72,23 +78,20 @@ export default {
         to.push(out.addr);
         satoshi += out.value;
       });
-      console.log(from);
       const sum = satoshi / 100000000;
       this.transactions.push({ from, to, sum });
     };
 
     this.socket.onclose = function(event) {
       if (event.wasClean) {
-        console.log(
-          `[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`
-        );
+        this.error = `[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`;
       } else {
-        console.log("[close] Соединение прервано");
+        this.error = "[close] Соединение прервано";
       }
     };
 
     this.socket.onerror = function(error) {
-      console.log(`[error] ${error.message}`);
+      this.error = `[error] ${error.message}`;
     };
   },
   methods: {

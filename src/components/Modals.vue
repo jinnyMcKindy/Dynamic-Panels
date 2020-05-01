@@ -116,7 +116,6 @@ export default {
       this.clickedExpand = index;
     },
     moveAt(e) {
-      console.log(this.clickedOnCoords);
       let boxes = this.boxes;
       const box = boxes[this.clickedOn];
       box.x = e.pageX - this.clickedOnCoords[0];
@@ -125,7 +124,6 @@ export default {
     },
     down(index, ev) {
       this.clickedOn = index;
-      console.log(ev);
       this.clickedOnCoords = [ev.layerX, ev.layerY];
       let boxes = this.boxes;
       const box = boxes[this.clickedOn];
