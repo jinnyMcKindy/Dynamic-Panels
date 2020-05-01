@@ -62,7 +62,10 @@ export default {
   },
   computed: {
     total: function() {
-      return this.transactions.reduce((acc, val) => (acc += val.sum), 0);
+      return this.transactions.reduce(
+        (acc, val) => (acc += parseFloat(val.sum)),
+        0
+      );
     }
   },
   mounted() {
@@ -76,9 +79,9 @@ export default {
       });
       data.out.forEach(out => {
         to.push(out.addr);
-        satoshi += out.value;
+        satoshi += parseFloat(out.value);
       });
-      const sum = satoshi / 100000000;
+      const sum = parseFloat(satoshi) / 100000000;
       this.transactions.push({ from, to, sum });
     };
 
