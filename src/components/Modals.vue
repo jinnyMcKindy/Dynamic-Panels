@@ -26,7 +26,6 @@
             <div
               class="top-border border"
               @mousedown.self="expand(index, 'top')"
-              @mouseup.self="up"
             ></div>
             <div class="inner-container">
               <div
@@ -38,6 +37,9 @@
                 <v-card outlined>
                   <v-list-item>
                     <v-list-item-content>
+                      <div class="overline mb-4" @mousedown.stop="close(index)">
+                        &#10005;
+                      </div>
                       <v-list-item-title class="headline mb-1">
                         Title
                       </v-list-item-title>
@@ -60,6 +62,13 @@
         </div>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-btn v-if="deleted" small color="warning" @click="addBox"
+          >Вернуть</v-btn
+        >
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -70,6 +79,7 @@ export default {
     return {
       clickedOn: false,
       clickedOnCoords: [],
+      deleted: 0,
       clickedExpand: false,
       maxZindex: 4,
       boxes: [
@@ -82,8 +92,12 @@ export default {
   },
   mounted() {
     const boxes = JSON.parse(localStorage.getItem("boxes"));
+    const deleted = JSON.parse(localStorage.getItem("deleted"));
     if (boxes) {
       this.boxes = boxes;
+    }
+    if (deleted) {
+      this.deleted = deleted;
     }
   },
   methods: {
@@ -121,6 +135,26 @@ export default {
     expand(index, dir) {
       this.direction = dir;
       this.clickedExpand = index;
+    },
+    close(index) {
+      let boxes = this.boxes;
+      boxes.splice(index, 1);
+      this.deleted++;
+      localStorage.setItem("deleted", JSON.stringify(this.deleted));
+      this.boxes = [...boxes];
+      this.saveToLocal();
+    },
+    addBox() {
+      this.boxes.push({
+        width: 300,
+        heigth: 50,
+        x: window.innerWidth / 2 - 150,
+        y: window.innerHeight / 2 - 25,
+        z: 5
+      });
+      this.deleted--;
+      localStorage.setItem("deleted", JSON.stringify(this.deleted));
+      this.saveToLocal();
     },
     moveAt(e) {
       let boxes = this.boxes;
@@ -176,6 +210,15 @@ export default {
 }
 .border {
   width: 100%;
+}
+
+.overline {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  z-index: 6;
 }
 .top-border,
 .bottom-border {

@@ -1,5 +1,7 @@
 # vue_test
 
+[Demo](https://volokolamskspb.github.io/Vue-Test/)
+
 ## Project setup
 ```
 npm install
