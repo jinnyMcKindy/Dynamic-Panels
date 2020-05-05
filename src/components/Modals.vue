@@ -145,11 +145,13 @@ export default {
       this.saveToLocal();
     },
     addBox() {
+      const width = 300;
+      const heigth = 50;
       this.boxes.push({
-        width: 300,
-        heigth: 50,
-        x: window.innerWidth / 2 - 150,
-        y: window.innerHeight / 2 - 25,
+        width,
+        heigth,
+        x: (window.innerWidth - width) / 2,
+        y: (window.innerHeight - heigth) / 2,
         z: 5
       });
       this.deleted--;
@@ -168,8 +170,8 @@ export default {
       this.clickedOnCoords = [ev.layerX, ev.layerY];
       let boxes = this.boxes;
       const box = boxes[this.clickedOn];
-      boxes = boxes.map(b => {
-        if (b.z >= box.z && b.z > 1) b.z--;
+      boxes = boxes.map((b, i) => {
+        if (b.z >= box.z && i !== this.clickedOn) b.z--;
         return b;
       });
       box.z = this.maxZindex;
@@ -211,7 +213,6 @@ export default {
 .border {
   width: 100%;
 }
-
 .overline {
   cursor: pointer;
   position: absolute;
