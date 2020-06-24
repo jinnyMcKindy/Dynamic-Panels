@@ -1,6 +1,12 @@
-# vue_test
+# Dynamic panels and Bitcoins
 
-[Demo](https://volokolamskspb.github.io/Vue-Test/)
+[Demo dybanic Panels](https://volokolamskspb.github.io/Vue-Test/)
+
+You can resize, drag and drop white boxes.
+
+[Demo Bitcoin](https://volokolamskspb.github.io/Vue-Test/bitcoin/)
+
+You can track bitcoin transactions.
 
 ## Project setup
 ```
