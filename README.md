@@ -4,8 +4,7 @@
 
 You can resize, drag and drop white boxes.
 
-[Demo Bitcoin](https://volokolamskspb.github.io/Dynamic-Panels/bitcoin/)
-
+Press 'Go to Bitcoins'
 You can track bitcoin transactions.
 
 ## Project setup
