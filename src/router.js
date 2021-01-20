@@ -6,8 +6,8 @@ import Bitcoin from "./components/Bitcoin";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/Vue-Test/", component: Modals, name: "modals" },
-  { path: "/Vue-Test/bitcoin/", component: Bitcoin, name: "bitcoin" }
+  { path: "/Dynamic-Panels/", component: Modals, name: "modals" },
+  { path: "/Dynamic-Panels/bitcoin/", component: Bitcoin, name: "bitcoin" }
 ];
 const createRouter = function() {
   return new VueRouter({

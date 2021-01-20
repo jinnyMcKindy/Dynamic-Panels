@@ -1,10 +1,10 @@
 # Dynamic panels and Bitcoins
 
-[Demo dybanic Panels](https://volokolamskspb.github.io/Vue-Test/)
+[Demo dynamic Panels](https://volokolamskspb.github.io/Dynamic-Panels/)
 
 You can resize, drag and drop white boxes.
 
-[Demo Bitcoin](https://volokolamskspb.github.io/Vue-Test/bitcoin/)
+[Demo Bitcoin](https://volokolamskspb.github.io/Dynamic-Panels/bitcoin/)
 
 You can track bitcoin transactions.
 
