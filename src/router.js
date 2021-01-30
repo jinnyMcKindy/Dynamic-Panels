@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Modals from "./components/Modals";
-import Bitcoin from "./components/Bitcoin";
+import Modals from "./components/modals/Modals";
+import Bitcoin from "./components/bitcoins/Bitcoin";
 
 Vue.use(VueRouter);
 
