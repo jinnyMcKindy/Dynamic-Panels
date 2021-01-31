@@ -13,7 +13,6 @@
           v-for="(item, id) in boxes"
           :key="id"
           draggable="true"
-          :index="id"
           :item="item"
           :data-id="item.id"
         />
@@ -62,10 +61,10 @@ export default {
   mounted() {
     const boxes = JSON.parse(localStorage.getItem("boxes"));
     const deleted = JSON.parse(localStorage.getItem("deleted"));
-    if (boxes) {
+    if (boxes && boxes[0].id) {
       this.$store.dispatch("modal/setBoxes", boxes);
     }
-    if (deleted) {
+    if (deleted && boxes[0].id) {
       this.$store.commit("modal/setDeleted", deleted);
     }
     document.addEventListener("dragstart", this.onDragStart, false);
@@ -130,13 +129,6 @@ export default {
           box.width = diff;
           break;
       }
-      this.$store.dispatch("modal/setBoxes", boxes);
-    },
-    moveAt(e) {
-      let boxes = this.boxes;
-      const box = boxes[this.clickedOn];
-      box.x = e.pageX;
-      box.y = e.pageY;
       this.$store.dispatch("modal/setBoxes", boxes);
     },
     addBox() {
