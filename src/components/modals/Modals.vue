@@ -10,8 +10,9 @@
     <v-row>
       <v-col cols="12">
         <Box
-          v-for="(item, id) in boxes"
-          :key="id"
+          v-for="item in boxes"
+          :id="item.id"
+          :key="item.id"
           draggable="true"
           :item="item"
           :data-id="item.id"
@@ -61,10 +62,10 @@ export default {
   mounted() {
     const boxes = JSON.parse(localStorage.getItem("boxes"));
     const deleted = JSON.parse(localStorage.getItem("deleted"));
-    if (boxes && boxes[0].id) {
+    if (boxes) {
       this.$store.dispatch("modal/setBoxes", boxes);
     }
-    if (deleted && boxes[0].id) {
+    if (deleted) {
       this.$store.commit("modal/setDeleted", deleted);
     }
     document.addEventListener("dragstart", this.onDragStart, false);
@@ -107,7 +108,9 @@ export default {
     expandAt(e) {
       if (this.direction === false) return;
       let boxes = this.boxes;
-      const box = boxes[this.clickedExpand];
+      const box = boxes.filter(
+        b => parseInt(b.id) === parseInt(this.clickedExpand)
+      )[0];
       let diff;
       switch (this.direction) {
         case "top":
@@ -135,12 +138,18 @@ export default {
       const width = 300;
       const height = 50;
       const boxes = this.boxes;
+      let maxId = 0;
+      boxes.forEach(element => {
+        element.id > maxId ? (maxId = element.id) : null;
+      });
+      maxId++;
       boxes.push({
         width,
         height,
         x: (window.innerWidth - width) / 2,
         y: (window.innerHeight - height) / 2,
-        z: 5
+        z: 5,
+        id: maxId
       });
       const deleted = this.deleted - 1;
       this.$store.commit("modal/setDeleted", deleted);

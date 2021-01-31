@@ -12,7 +12,8 @@ export const modalStore = {
     clickedOnCoords: [],
     clickedExpand: false,
     maxZindex: 4,
-    direction: null
+    direction: null,
+    deletedKey: null
   },
   mutations: {
     setBox(state, { box, id }) {
@@ -29,8 +30,9 @@ export const modalStore = {
     setBoxes(state, boxes) {
       state.boxes = [...boxes];
     },
-    setDeleted(state, deleted) {
+    setDeleted(state, deleted, key) {
       state.deleted = deleted;
+      state.deletedKey = key;
     },
     setClickedOn(state, clickedOn) {
       state.clickedOn = clickedOn;
@@ -60,9 +62,9 @@ export const modalStore = {
     down(state, index) {
       state.clickedOn = index;
       let boxes = [...state.boxes];
-      const box = boxes[index];
-      boxes = boxes.map((b, i) => {
-        if (b.z >= box.z && i !== state.clickedOn) b.z--;
+      const box = boxes.filter(b => parseInt(b.id) === parseInt(index));
+      boxes = boxes.map(b => {
+        if (b.z >= box.z && parseInt(b.id) !== parseInt(state.clickedOn)) b.z--;
         return b;
       });
       box.z = state.maxZindex;
