@@ -62,7 +62,7 @@ export const modalStore = {
     down(state, index) {
       state.clickedOn = index;
       let boxes = [...state.boxes];
-      const box = boxes.filter(b => parseInt(b.id) === parseInt(index));
+      const box = boxes.filter(b => parseInt(b.id) === parseInt(index))[0];
       boxes = boxes.map(b => {
         if (b.z >= box.z && parseInt(b.id) !== parseInt(state.clickedOn)) b.z--;
         return b;
