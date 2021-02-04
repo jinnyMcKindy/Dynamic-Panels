@@ -1,5 +1,4 @@
 module.exports = {
-  presets: ["@vue/cli-plugin-babel/preset"],
   plugins: [
     [
       "babel-plugin-root-import",
@@ -8,5 +7,11 @@ module.exports = {
         rootPathPrefix: "@/"
       }
     ]
-  ]
+  ],
+  "presets": [["env", { "modules": false }]],
+  "env": {
+    "test": {
+      "presets": [["env", { "targets": { "node": "current" } }]]
+    }
+  }
 };
