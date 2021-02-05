@@ -83,7 +83,6 @@ export default {
       let boxes = [...this.boxes];
       boxes = boxes.filter(element => parseInt(element.id) !== parseInt(id));
       const deleted = this.deleted + 1;
-      console.log(id, boxes);
       this.$store.commit("modal/setDeleted", deleted, id);
       this.$store.commit("modal/setBoxes", boxes);
       this.$store.commit("modal/saveToLocal");
