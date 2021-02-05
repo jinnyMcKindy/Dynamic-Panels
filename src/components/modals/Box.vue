@@ -48,6 +48,11 @@
     </div>
   </div>
 </template>
+<style>
+.v-list-item__title {
+  user-select: none;
+}
+</style>
 <script>
 import { mapState } from "vuex";
 export default {

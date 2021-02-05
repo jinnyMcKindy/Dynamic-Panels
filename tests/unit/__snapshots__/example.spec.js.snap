@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloWorld.vue renders props.msg when passed 1`] = `
+<v-container>
+  <v-row>
+    <v-col cols="12">
+      <router-link to="[object Object]" class="nav-link nav-link--light">
+        Go to Modals
+      </router-link>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="3">
+      <v-btn small="" color="primary">Запуск</v-btn>
+    </v-col>
+    <v-col cols="3">
+      <v-btn small="" color="error" disabled="true">Остановка</v-btn>
+    </v-col>
+    <v-col cols="3">
+      <v-btn small="" color="warning" disabled="true">Сброс</v-btn>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="12">
+      <h3>Сумма: 0 BTC</h3>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="12">
+      <div>
+        <v-simple-table></v-simple-table>
+        <div></div>
+      </div>
+    </v-col>
+  </v-row>
+</v-container>
+`;
